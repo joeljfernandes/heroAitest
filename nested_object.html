@@ -1,0 +1,70 @@
+<html>
+<script>
+
+    function process_number(number){
+        return number + 1;
+    }
+
+    function process_string(string){
+        return string + ' ' + 'AI';
+    }
+
+function process_nested_object(object1){
+    for (const [key, value] of Object.entries(object1)) {
+console.log(typeof value)
+
+if( typeof value == 'string'){
+    object1[key] = process_string(value);
+}
+
+if( typeof value == 'number'){
+    object1[key] = process_number(value);
+}
+
+if( Array.isArray(value)){
+    let newArray = [];
+    value.forEach((x, i) => {
+      
+        if( typeof x == 'string'){
+            newArray.push(process_string(x));
+        }
+        if( typeof x == 'number'){
+            newArray.push(process_number(x));
+        }
+        
+        
+    });
+    object1[key] = newArray;
+}
+
+if(typeof value === 'object' &&
+    !Array.isArray(value)){
+
+        process_nested_object(value);
+
+}
+
+}
+
+   return object1;
+}
+
+var test =  {
+  a: 123,
+  b: 'hero',
+  c: [1, 2, 3],
+  d: {
+    e: 3,
+    f: ['abc', 'def']
+  }
+};
+
+console.log(process_nested_object(test));
+</script>
+<body>
+
+   <h1> Nested Object </h1>
+   <p> Please look at the console log for the output.</p>
+</body>
+
+</html>
