@@ -1,0 +1,36 @@
+<html>
+<script>
+
+function check(no_of_people,numberCandy){
+         return Number.isInteger(numberCandy/no_of_people);
+    }
+
+function divide_candy(){
+    var numberCandy=document.getElementById("number").value;  
+    
+//Iterate nos to add to arrays
+let result_array = [];
+for (let number_of_people = 0; number_of_people < numberCandy; number_of_people++) {
+  //iterate  number of people.
+
+        if(check(number_of_people, numberCandy)){
+              result_array.push(number_of_people - 1);
+            }
+
+        }
+        // - 1 from total candy since dont have to count oneself
+        result_array.push(numberCandy - 1);
+
+        alert(result_array);
+
+}
+
+
+</script>
+<body>
+
+    <input type="text" id="number" name="number"><br><br>
+    <button type="button" onclick="divide_candy()">Divide Candy</button>
+</body>
+
+</html>
